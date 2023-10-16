@@ -1,0 +1,15 @@
+services:
+  mongo:
+    image: mongo:6.0.4
+    ports:
+      - 27017:27017
+
+  jupyter:
+    image: jupyter/minimal-notebook:python-3.10
+    ports:
+      - 8888:8888
+    volumes:
+      - ./research.ipynb:/home/jovyan/work/research.ipynb
+    entrypoint: >
+      sh -c "pip install -r requirements.txt --no-cache-dir &&
+             jupyter notebook --port=8888 --no-browser --ip=0.0.0.0 --allow-root"

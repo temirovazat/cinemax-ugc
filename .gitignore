@@ -1,0 +1,11 @@
+.vscode
+.DS_Store
+.python-version
+__pycache__
+.env
+main.log
+.pytest_cache
+.mypy_cache
+nohup.out
+mypy
+flake8

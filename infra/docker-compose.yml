@@ -1,0 +1,22 @@
+services:
+  fastapi:
+    image: temirovazat/ugc_api:1.0.0
+    env_file:
+      - ./.env
+    environment:
+      FASTAPI_DEBUG: True
+
+  mongo:
+    image: mongo:6.0.4
+    expose:
+      - 27017
+
+  nginx:
+    image: nginx:1.23.2
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - fastapi
